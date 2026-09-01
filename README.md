@@ -89,3 +89,50 @@ Solved: 1 (Easy: 1, Medium: 0, Hard: 0)
 |---|---|---|---|
 | 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-01 |
 <!-- LEETHUB:TABLE:END -->
+
+
+<!-- AUTO-DASHBOARD-START -->
+
+## 📊 Progress Dashboard
+
+### Problems Solved
+
+| Difficulty | Solved |
+|---|---:|
+| 🟢 Easy | 1 |
+| 🟡 Medium | 0 |
+| 🔴 Hard | 0 |
+| **Total** | **1** |
+
+---
+
+### 🧠 Problem Categories
+
+| Category | Solved |
+|---|---:|
+| Arrays | 1 |
+
+
+---
+
+### 🔥 Patterns Practiced
+
+| Pattern | Problems |
+|---|---:|
+| arrays | 1 |
+
+
+---
+
+### 📝 Recent Problems
+
+| Problem | Difficulty | Pattern |
+|---|---|---|
+| 1. Two Sum | Easy | arrays |
+
+
+---
+
+> Statistics are automatically generated from the solutions in this repository.
+
+<!-- AUTO-DASHBOARD-END -->
