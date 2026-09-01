@@ -7,7 +7,11 @@ import requests
 REPO_ROOT = os.getcwd()
 
 
-CATEGORY_MAP = {
+# ---------------------------------------------------------
+# CATEGORY CONFIGURATION
+# ---------------------------------------------------------
+
+ALGORITHM_CATEGORIES = {
     "Array": "arrays",
     "String": "strings",
     "Hash Table": "hashing",
@@ -32,26 +36,51 @@ CATEGORY_MAP = {
 }
 
 
+DATABASE_TAGS = {
+    "Database",
+    "SQL",
+}
+
+
+NON_ALGORITHM_CATEGORIES = {
+    "Shell": "shell",
+    "Pandas": "pandas",
+    "Concurrency": "concurrency",
+}
+
+
+# ---------------------------------------------------------
+# FIND RAW LEETCODE FOLDERS
+# ---------------------------------------------------------
+
 def get_problem_folders():
+
     folders = []
 
     for item in os.listdir(REPO_ROOT):
+
         path = os.path.join(REPO_ROOT, item)
 
         if not os.path.isdir(path):
             continue
 
-        # Matches folders such as:
+        # Example:
         # 1-two-sum
         # 15-3sum
         # 121-best-time-to-buy-and-sell-stock
+
         if re.match(r"^\d+-", item):
             folders.append(item)
 
     return folders
 
 
+# ---------------------------------------------------------
+# EXTRACT PROBLEM ID
+# ---------------------------------------------------------
+
 def extract_problem_id(folder_name):
+
     match = re.match(r"^(\d+)-", folder_name)
 
     if match:
@@ -60,34 +89,33 @@ def extract_problem_id(folder_name):
     return None
 
 
-def get_title_from_question(folder_path, folder_name):
-    question_file = os.path.join(folder_path, "question.md")
+# ---------------------------------------------------------
+# GET SLUG
+# ---------------------------------------------------------
 
-    if os.path.exists(question_file):
-        with open(question_file, "r", encoding="utf-8") as file:
-            content = file.read()
+def get_slug(folder_name):
 
-        # Try to find a markdown heading.
-        match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
+    return re.sub(r"^\d+-", "", folder_name)
 
-        if match:
-            return match.group(1).strip()
 
-    # Fallback to folder name
-    name = re.sub(r"^\d+-", "", folder_name)
-    return name.replace("-", " ").title()
-
+# ---------------------------------------------------------
+# QUERY LEETCODE
+# ---------------------------------------------------------
 
 def query_leetcode(title_slug):
+
     url = "https://leetcode.com/graphql/"
 
     query = """
     query questionData($titleSlug: String!) {
+
         question(titleSlug: $titleSlug) {
+
             questionFrontendId
             title
             titleSlug
             difficulty
+
             topicTags {
                 name
                 slug
@@ -118,14 +146,25 @@ def query_leetcode(title_slug):
     return data.get("data", {}).get("question")
 
 
-def get_slug(folder_name):
-    return re.sub(r"^\d+-", "", folder_name)
-
+# ---------------------------------------------------------
+# DETERMINE CATEGORY
+# ---------------------------------------------------------
 
 def determine_category(tags):
-    tag_names = [tag["name"] for tag in tags]
 
-    # Priority order.
+    tag_names = {tag["name"] for tag in tags}
+
+    # Database
+    if tag_names.intersection(DATABASE_TAGS):
+        return "database"
+
+    # Other LeetCode categories
+    for tag in NON_ALGORITHM_CATEGORIES:
+
+        if tag in tag_names:
+            return NON_ALGORITHM_CATEGORIES[tag]
+
+    # Algorithms
     priority = [
         "Array",
         "String",
@@ -138,6 +177,7 @@ def determine_category(tags):
         "Queue",
         "Tree",
         "Binary Tree",
+        "Binary Search Tree",
         "Graph",
         "Heap",
         "Priority Queue",
@@ -150,34 +190,92 @@ def determine_category(tags):
     ]
 
     for tag in priority:
+
         if tag in tag_names:
-            return CATEGORY_MAP[tag]
+            return f"algorithms/{ALGORITHM_CATEGORIES[tag]}"
 
     return "other"
 
 
-def create_readme(problem, source_folder, destination_folder):
+# ---------------------------------------------------------
+# PRIMARY PATTERN
+# ---------------------------------------------------------
+
+def determine_primary_pattern(tags):
+
+    tag_names = {tag["name"] for tag in tags}
+
+    priority = [
+        "Array",
+        "Hash Table",
+        "String",
+        "Two Pointers",
+        "Sliding Window",
+        "Binary Search",
+        "Linked List",
+        "Stack",
+        "Queue",
+        "Tree",
+        "Graph",
+        "Heap",
+        "Greedy",
+        "Backtracking",
+        "Dynamic Programming",
+        "Bit Manipulation",
+        "Math",
+    ]
+
+    for tag in priority:
+
+        if tag in tag_names:
+            return tag
+
+    return "Other"
+
+
+# ---------------------------------------------------------
+# CREATE README
+# ---------------------------------------------------------
+
+def create_readme(problem, destination_folder):
+
+    readme_path = os.path.join(
+        destination_folder,
+        "README.md"
+    )
+
+    # NEVER overwrite an existing README.
+    if os.path.exists(readme_path):
+
+        print(
+            f"README already exists. "
+            f"Keeping existing README: {readme_path}"
+        )
+
+        return
+
     problem_id = problem["questionFrontendId"]
     title = problem["title"]
     difficulty = problem["difficulty"]
-    tags = [tag["name"] for tag in problem["topicTags"]]
 
-    primary_category = determine_category(problem["topicTags"])
+    tags = [
+        tag["name"]
+        for tag in problem["topicTags"]
+    ]
 
-    notes_path = os.path.join(source_folder, "notes.md")
-    question_path = os.path.join(source_folder, "question.md")
+    primary_pattern = determine_primary_pattern(
+        problem["topicTags"]
+    )
 
-    notes = ""
-
-    if os.path.exists(notes_path):
-        with open(notes_path, "r", encoding="utf-8") as file:
-            notes = file.read().strip()
+    category = determine_category(
+        problem["topicTags"]
+    )
 
     readme = f"""# {problem_id}. {title}
 
 **Difficulty:** {difficulty}  
-**Category:** Algorithms  
-**Primary Pattern:** {primary_category}  
+**Category:** {category}  
+**Primary Pattern:** {primary_pattern}  
 **Topics:** {", ".join(tags)}
 
 ---
@@ -188,20 +286,45 @@ See [`question.md`](./question.md) for the complete problem statement.
 
 ---
 
-## Approach
+## My Thought Process
 
-### Thought Process
+### 1. Initial Approach
 
-Write your reasoning here.
+<!--
+What was your first idea?
 
-- What was your first idea?
-- What observation helped?
-- Why does the final approach work?
+Example:
+I initially considered using...
+-->
 
-### Algorithm
+Write your initial thinking here.
 
-1. Identify the key observation.
-2. Apply the chosen data structure or algorithm.
+---
+
+### 2. Observation
+
+<!--
+What important observation helped you solve the problem?
+-->
+
+Write the key observation here.
+
+---
+
+### 3. Optimized Approach
+
+<!--
+Explain why the final approach is better.
+-->
+
+Explain your optimized approach here.
+
+---
+
+## Algorithm
+
+1. Identify the important condition.
+2. Select the appropriate data structure or algorithm.
 3. Process the input.
 4. Return the result.
 
@@ -217,39 +340,54 @@ Write your reasoning here.
 
 ## Solution
 
-The accepted LeetCode solution is available in the solution file.
+The accepted solution is available in:
 
----
-
-## My Notes
-
-{notes}
+- `solution.*`
 
 ---
 
 ## Key Takeaway
 
-Write the main concept or pattern learned from this problem.
+<!--
+What did you learn from this problem?
+
+Example:
+Hash maps can reduce repeated searching from O(n)
+to O(1) average lookup.
+-->
+
+Write your key takeaway here.
 
 ---
 
 ## Related Topics
 
-{", ".join(f"- {tag}" for tag in tags)}
+{chr(10).join(f"- {tag}" for tag in tags)}
 """
 
-    os.makedirs(destination_folder, exist_ok=True)
+    with open(
+        readme_path,
+        "w",
+        encoding="utf-8"
+    ) as file:
 
-    readme_path = os.path.join(destination_folder, "README.md")
-
-    with open(readme_path, "w", encoding="utf-8") as file:
         file.write(readme)
 
 
-def process_problem(folder_name):
-    source_folder = os.path.join(REPO_ROOT, folder_name)
+# ---------------------------------------------------------
+# PROCESS PROBLEM
+# ---------------------------------------------------------
 
-    problem_id = extract_problem_id(folder_name)
+def process_problem(folder_name):
+
+    source_folder = os.path.join(
+        REPO_ROOT,
+        folder_name
+    )
+
+    problem_id = extract_problem_id(
+        folder_name
+    )
 
     if problem_id is None:
         return
@@ -261,68 +399,133 @@ def process_problem(folder_name):
     problem = query_leetcode(slug)
 
     if not problem:
-        print(f"Could not find LeetCode data for {folder_name}")
+
+        print(
+            f"Could not retrieve LeetCode data "
+            f"for {folder_name}"
+        )
+
         return
 
-    category = determine_category(problem["topicTags"])
+    category = determine_category(
+        problem["topicTags"]
+    )
 
     destination_parent = os.path.join(
         REPO_ROOT,
-        "algorithms",
         category
     )
 
-    os.makedirs(destination_parent, exist_ok=True)
+    os.makedirs(
+        destination_parent,
+        exist_ok=True
+    )
 
     destination_folder = os.path.join(
         destination_parent,
         f"{problem_id:04d}-{slug}"
     )
 
-    # Already organized.
-    if os.path.abspath(source_folder) == os.path.abspath(destination_folder):
+    # -----------------------------------------------------
+    # ALREADY ORGANIZED
+    # -----------------------------------------------------
+
+    if os.path.abspath(source_folder) == os.path.abspath(
+        destination_folder
+    ):
+
+        create_readme(
+            problem,
+            destination_folder
+        )
+
         return
 
-    # Move files.
+    # -----------------------------------------------------
+    # MOVE PROBLEM
+    # -----------------------------------------------------
+
     if not os.path.exists(destination_folder):
-        shutil.move(source_folder, destination_folder)
+
+        shutil.move(
+            source_folder,
+            destination_folder
+        )
+
     else:
-        # Merge files if destination already exists.
+
+        # Merge files if destination exists.
         for item in os.listdir(source_folder):
-            source = os.path.join(source_folder, item)
-            destination = os.path.join(destination_folder, item)
+
+            source = os.path.join(
+                source_folder,
+                item
+            )
+
+            destination = os.path.join(
+                destination_folder,
+                item
+            )
 
             if os.path.exists(destination):
                 continue
 
-            shutil.move(source, destination)
+            shutil.move(
+                source,
+                destination
+            )
 
-        shutil.rmtree(source_folder)
+        shutil.rmtree(
+            source_folder
+        )
+
+    # -----------------------------------------------------
+    # CREATE README
+    # -----------------------------------------------------
 
     create_readme(
         problem,
-        destination_folder,
         destination_folder
     )
 
     print(
-        f"Organized {problem['title']} → "
-        f"algorithms/{category}/{problem_id:04d}-{slug}"
+        f"Organized: {problem['title']}"
+    )
+
+    print(
+        f"Location: {category}/"
+        f"{problem_id:04d}-{slug}"
     )
 
 
+# ---------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------
+
 def main():
+
     folders = get_problem_folders()
 
     if not folders:
-        print("No new LeetCode problem folders found.")
+
+        print(
+            "No raw LeetCode problem folders found."
+        )
+
         return
 
     for folder in folders:
+
         try:
+
             process_problem(folder)
+
         except Exception as error:
-            print(f"Error processing {folder}: {error}")
+
+            print(
+                f"Error processing {folder}: "
+                f"{error}"
+            )
 
 
 if __name__ == "__main__":
