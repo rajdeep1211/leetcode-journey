@@ -11,68 +11,85 @@ ROOT = os.getcwd()
 # ---------------------------------------------------------
 
 def find_problem_folders():
+
     problems = []
 
-    # ---------------------------------------------------------
+    # -----------------------------------------------------
     # Algorithms
-    # ---------------------------------------------------------
+    # -----------------------------------------------------
+
     algorithms_path = os.path.join(ROOT, "algorithms")
 
     if os.path.exists(algorithms_path):
-        for category in os.listdir(algorithms_path):
-            category_path = os.path.join(
-                algorithms_path,
-                category
-            )
 
-            if not os.path.isdir(category_path):
-                continue
+        for root, dirs, files in os.walk(algorithms_path):
 
-            for problem in os.listdir(category_path):
-                problem_path = os.path.join(
-                    category_path,
-                    problem
-                )
+            for directory in dirs:
 
-                if not os.path.isdir(problem_path):
+                if not re.match(r"^\d+-", directory):
                     continue
 
-                if re.match(r"^\d+-", problem):
-                    problems.append({
-                        "path": problem_path,
-                        "category": category,
-                        "name": problem
-                    })
+                problem_path = os.path.join(
+                    root,
+                    directory
+                )
 
-    # ---------------------------------------------------------
-    # Database / SQL
-    # ---------------------------------------------------------
+                # Find the algorithm category.
+                relative_path = os.path.relpath(
+                    problem_path,
+                    algorithms_path
+                ).replace(os.sep, "/")
+
+                parts = relative_path.split("/")
+
+                if len(parts) >= 2:
+                    category = parts[0]
+                else:
+                    category = "other"
+
+                problems.append({
+                    "path": problem_path,
+                    "category": category,
+                    "name": directory
+                })
+
+    # -----------------------------------------------------
+    # Database / SQL / other database categories
+    # -----------------------------------------------------
+
     database_path = os.path.join(ROOT, "database")
 
     if os.path.exists(database_path):
+
         for root, dirs, files in os.walk(database_path):
-            for problem in dirs:
-                if re.match(r"^\d+-", problem):
-                    problem_path = os.path.join(
-                        root,
-                        problem
-                    )
 
-                    problems.append({
-                        "path": problem_path,
-                        "category": "database",
-                        "name": problem
-                    })
+            for directory in dirs:
 
-    # ---------------------------------------------------------
+                if not re.match(r"^\d+-", directory):
+                    continue
+
+                problem_path = os.path.join(
+                    root,
+                    directory
+                )
+
+                problems.append({
+                    "path": problem_path,
+                    "category": "database",
+                    "name": directory
+                })
+
+    # -----------------------------------------------------
     # Other categories
-    # ---------------------------------------------------------
+    # -----------------------------------------------------
+
     for category in [
         "shell",
         "pandas",
         "concurrency",
         "other"
     ]:
+
         category_path = os.path.join(
             ROOT,
             category
@@ -81,23 +98,39 @@ def find_problem_folders():
         if not os.path.exists(category_path):
             continue
 
-        for item in os.listdir(category_path):
-            path = os.path.join(
-                category_path,
-                item
-            )
+        for root, dirs, files in os.walk(category_path):
 
-            if os.path.isdir(path) and re.match(
-                r"^\d+-",
-                item
-            ):
+            for directory in dirs:
+
+                if not re.match(r"^\d+-", directory):
+                    continue
+
+                problem_path = os.path.join(
+                    root,
+                    directory
+                )
+
                 problems.append({
-                    "path": path,
+                    "path": problem_path,
                     "category": category,
-                    "name": item
+                    "name": directory
                 })
 
-    return problems
+    # -----------------------------------------------------
+    # Remove accidental duplicates
+    # -----------------------------------------------------
+
+    unique_problems = {}
+    
+    for problem in problems:
+
+        normalized_path = os.path.normpath(
+            problem["path"]
+        )
+
+        unique_problems[normalized_path] = problem
+
+    return list(unique_problems.values())
 
 
 # ---------------------------------------------------------
@@ -128,32 +161,40 @@ def read_problem_metadata(problem):
 
         content = file.read()
 
-
+    # -----------------------------------------------------
     # Difficulty
+    # -----------------------------------------------------
+
     match = re.search(
         r"\*\*Difficulty:\*\*\s*(.+)",
         content
     )
 
     if match:
+
         metadata["difficulty"] = (
             match.group(1).strip()
         )
 
+    # -----------------------------------------------------
+    # Primary Pattern
+    # -----------------------------------------------------
 
-    # Pattern
     match = re.search(
         r"\*\*Primary Pattern:\*\*\s*(.+)",
         content
     )
 
     if match:
+
         metadata["pattern"] = (
             match.group(1).strip()
         )
 
-
+    # -----------------------------------------------------
     # Title
+    # -----------------------------------------------------
+
     match = re.search(
         r"^#\s+(.+)$",
         content,
@@ -161,10 +202,10 @@ def read_problem_metadata(problem):
     )
 
     if match:
+
         metadata["title"] = (
             match.group(1).strip()
         )
-
 
     return metadata
 
@@ -197,6 +238,9 @@ def generate_dashboard(problems):
             problem["category"]
         ] += 1
 
+    # -----------------------------------------------------
+    # Difficulty
+    # -----------------------------------------------------
 
     total = len(problems)
 
@@ -204,9 +248,8 @@ def generate_dashboard(problems):
     medium = difficulty_counter["Medium"]
     hard = difficulty_counter["Hard"]
 
-
     # -----------------------------------------------------
-    # TOP PATTERNS
+    # Patterns
     # -----------------------------------------------------
 
     pattern_rows = ""
@@ -217,13 +260,14 @@ def generate_dashboard(problems):
             f"| {pattern} | {count} |\n"
         )
 
-
     if not pattern_rows:
-        pattern_rows = "| No problems yet | 0 |\n"
 
+        pattern_rows = (
+            "| No problems yet | 0 |\n"
+        )
 
     # -----------------------------------------------------
-    # CATEGORIES
+    # Categories
     # -----------------------------------------------------
 
     category_rows = ""
@@ -241,21 +285,28 @@ def generate_dashboard(problems):
             f"| {display_name} | {count} |\n"
         )
 
-
     if not category_rows:
-        category_rows = "| No problems yet | 0 |\n"
 
+        category_rows = (
+            "| No problems yet | 0 |\n"
+        )
 
     # -----------------------------------------------------
-    # RECENT PROBLEMS
+    # Recent Problems
     # -----------------------------------------------------
 
+    # Sort by problem number.
+    # This keeps the dashboard deterministic.
     recent = sorted(
         problems,
-        key=lambda x: x["name"],
+        key=lambda x: int(
+            re.match(
+                r"^(\d+)-",
+                x["name"]
+            ).group(1)
+        ),
         reverse=True
     )[:10]
-
 
     recent_rows = ""
 
@@ -271,12 +322,15 @@ def generate_dashboard(problems):
             f"| {metadata['pattern']} |\n"
         )
 
-
     if not recent_rows:
+
         recent_rows = (
             "| No problems yet | - | - |\n"
         )
 
+    # -----------------------------------------------------
+    # Dashboard
+    # -----------------------------------------------------
 
     dashboard = f"""
 ## 📊 Progress Dashboard
@@ -319,7 +373,6 @@ def generate_dashboard(problems):
 > Statistics are automatically generated from the solutions in this repository.
 """
 
-
     return dashboard
 
 
@@ -337,9 +390,7 @@ def update_readme(dashboard):
     if not os.path.exists(readme_path):
 
         print("README.md not found.")
-
         return
-
 
     with open(
         readme_path,
@@ -349,7 +400,6 @@ def update_readme(dashboard):
 
         content = file.read()
 
-
     start_marker = (
         "<!-- AUTO-DASHBOARD-START -->"
     )
@@ -358,20 +408,17 @@ def update_readme(dashboard):
         "<!-- AUTO-DASHBOARD-END -->"
     )
 
-
     block = (
         f"{start_marker}\n"
         f"{dashboard}\n"
         f"{end_marker}"
     )
 
-
     pattern = (
         re.escape(start_marker)
         + r".*?"
         + re.escape(end_marker)
     )
-
 
     if re.search(
         pattern,
@@ -394,7 +441,6 @@ def update_readme(dashboard):
             + "\n"
         )
 
-
     with open(
         readme_path,
         "w",
@@ -402,6 +448,8 @@ def update_readme(dashboard):
     ) as file:
 
         file.write(content)
+
+
 # ---------------------------------------------------------
 # FIX LEETHUB TABLE LINKS
 # ---------------------------------------------------------
@@ -414,6 +462,7 @@ def update_leethub_links(problems):
     )
 
     if not os.path.exists(readme_path):
+
         print("README.md not found.")
         return
 
@@ -422,17 +471,30 @@ def update_leethub_links(problems):
         "r",
         encoding="utf-8"
     ) as file:
+
         content = file.read()
 
-    start_marker = "<!-- LEETHUB:TABLE:START -->"
-    end_marker = "<!-- LEETHUB:TABLE:END -->"
+    start_marker = (
+        "<!-- LEETHUB:TABLE:START -->"
+    )
 
-    if start_marker not in content or end_marker not in content:
-        print("LeetHub table markers not found.")
+    end_marker = (
+        "<!-- LEETHUB:TABLE:END -->"
+    )
+
+    if (
+        start_marker not in content
+        or end_marker not in content
+    ):
+
+        print(
+            "LeetHub table markers not found."
+        )
+
         return
 
     # -----------------------------------------------------
-    # Build problem number -> actual repository path
+    # Build problem number -> actual path
     # -----------------------------------------------------
 
     problem_paths = {}
@@ -449,23 +511,32 @@ def update_leethub_links(problems):
         if not match:
             continue
 
-        problem_number = match.group(1)
+        # Remove leading zeros.
+        #
+        # 0001 -> 1
+        # 0121 -> 121
+        # 0175 -> 175
+        # 0217 -> 217
+
+        problem_number = str(
+            int(match.group(1))
+        )
 
         relative_path = os.path.relpath(
             problem["path"],
             ROOT
         )
 
-        # GitHub URLs always use /
         relative_path = relative_path.replace(
             os.sep,
             "/"
         )
 
-        # Add trailing slash for directory links
         relative_path += "/"
 
-        problem_paths[problem_number] = relative_path
+        problem_paths[
+            problem_number
+        ] = relative_path
 
     # -----------------------------------------------------
     # Extract LeetHub table
@@ -477,23 +548,31 @@ def update_leethub_links(problems):
         + re.escape(end_marker)
     )
 
-    match = re.search(
+    table_match = re.search(
         pattern,
         content,
         flags=re.DOTALL
     )
 
-    if not match:
-        print("Could not find LeetHub table.")
+    if not table_match:
+
+        print(
+            "Could not find LeetHub table."
+        )
+
         return
 
-    table = match.group(1)
+    table = table_match.group(1)
 
     # -----------------------------------------------------
-    # Replace links using problem number
+    # Replace links
     # -----------------------------------------------------
+
+    changes = 0
 
     def replace_link(match):
+
+        nonlocal changes
 
         problem_number = match.group(1)
         problem_title = match.group(2)
@@ -504,7 +583,19 @@ def update_leethub_links(problems):
         )
 
         if not new_path:
+
             return match.group(0)
+
+        if current_path == new_path:
+
+            return match.group(0)
+
+        changes += 1
+
+        print(
+            f"Fixing LeetHub link: "
+            f"{problem_number}"
+        )
 
         return (
             f"| {problem_number} | "
@@ -512,7 +603,7 @@ def update_leethub_links(problems):
             f"({new_path}) |"
         )
 
-    table_pattern = (
+    table_pattern = re.compile(
         r"\|\s*(\d+)\s*\|\s*"
         r"\[([^\]]+)\]"
         r"\(([^)]+)\)\s*\|"
@@ -525,13 +616,13 @@ def update_leethub_links(problems):
     )
 
     # -----------------------------------------------------
-    # Write updated README
+    # Update README
     # -----------------------------------------------------
 
     updated_content = (
-        content[:match.start(1)]
+        content[:table_match.start(1)]
         + updated_table
-        + content[match.end(1):]
+        + content[table_match.end(1):]
     )
 
     with open(
@@ -539,9 +630,21 @@ def update_leethub_links(problems):
         "w",
         encoding="utf-8"
     ) as file:
+
         file.write(updated_content)
 
-    print("LeetHub table links updated successfully.")
+    if changes:
+
+        print(
+            f"Updated {changes} LeetHub link(s)."
+        )
+
+    else:
+
+        print(
+            "No LeetHub link changes needed."
+        )
+
 
 # ---------------------------------------------------------
 # MAIN
@@ -554,6 +657,22 @@ def main():
     print(
         f"Found {len(problems)} organized problems."
     )
+
+    # Print detected problems for easier debugging.
+    for problem in sorted(
+        problems,
+        key=lambda x: int(
+            re.match(
+                r"^(\d+)-",
+                x["name"]
+            ).group(1)
+        )
+    ):
+
+        print(
+            f"  {problem['name']} "
+            f"-> {problem['category']}"
+        )
 
     dashboard = generate_dashboard(
         problems
@@ -571,6 +690,6 @@ def main():
         "Dashboard updated successfully."
     )
 
-    print(
-        "LeetHub links updated successfully."
-    )
+
+if __name__ == "__main__":
+    main()
