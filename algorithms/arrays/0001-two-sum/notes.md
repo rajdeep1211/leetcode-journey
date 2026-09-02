@@ -4,29 +4,34 @@
 
 ### Initial Thought
 
-Write what you first thought when you saw the problem.
+My first thought was to check every possible pair of numbers and see if their sum equals the target.
 
 ### Observation
 
-Write the important observation that helped you solve it.
+The brute-force approach would take O(n²). Instead of repeatedly searching for the required number, I can store numbers that I have already seen in a hash map.
 
 ### Final Approach
 
-Explain the approach you finally used and why it works.
+For each number, I calculate:
+
+target - current number
+
+If that value is already present in the hash map, I have found the required pair.
+
+Otherwise, I store the current number and its index in the hash map.
 
 ---
 
 ## Complexity
 
-**Time:** `O(?)`
+**Time:** `O(n)`
 
-**Space:** `O(?)`
+**Space:** `O(n)`
 
 ---
 
 ## Notes
 
-- What did I learn?
-- What mistake should I avoid next time?
-- What pattern should I remember?
-- What similar problems should I practice?
+- Hash maps provide fast average O(1) lookup.
+- The complement technique is useful for pair-sum problems.
+- Always consider whether previously processed values can be stored for faster lookup.
