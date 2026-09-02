@@ -33,6 +33,9 @@ jobs:
       - name: Update progress dashboard
         run: python automation/update_dashboard.py
 
+      - name: Sync solving notes
+        run: python automation/sync_notes.py
+
       - name: Commit organized problems
         run: |
           git config user.name "github-actions[bot]"
