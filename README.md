@@ -14,10 +14,10 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Difficulty | Solved |
 |---|---:|
-| 🟢 Easy | 3 |
+| 🟢 Easy | 4 |
 | 🟡 Medium | 0 |
 | 🔴 Hard | 0 |
-| **Total** | **3** |
+| **Total** | **4** |
 
 ---
 
@@ -25,7 +25,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Category | Solved |
 |---|---:|
-| Arrays | 2 |
+| Arrays | 3 |
 | Database | 1 |
 
 
@@ -36,6 +36,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Pattern | Problems |
 |---|---:|
 | Hash Table | 2 |
+| Dynamic Programming | 1 |
 | SQL | 1 |
 
 
@@ -47,6 +48,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 |---|---|---|
 | 217. Contains Duplicate | Easy | Hash Table |
 | 175. Combine Two Tables | Easy | SQL |
+| 121. Best Time to Buy and Sell Stock | Easy | Dynamic Programming |
 | 1. Two Sum | Easy | Hash Table |
 
 
