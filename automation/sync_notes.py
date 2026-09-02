@@ -72,13 +72,6 @@ def update_readme(problem_folder):
     if not notes:
         return
 
-    notes_block = (
-        f"{START_MARKER}\n\n"
-        f"## 💭 My Solving Notes\n\n"
-        f"{notes}\n\n"
-        f"{END_MARKER}"
-    )
-
     with open(
         readme_path,
         "r",
@@ -87,11 +80,30 @@ def update_readme(problem_folder):
 
         readme = file.read()
 
+
+    # Remove the title from notes because
+    # README already has its own section title.
+    notes = re.sub(
+        r"^#\s+My Solving Notes\s*",
+        "",
+        notes,
+        flags=re.MULTILINE
+    ).strip()
+
+
+    notes_block = (
+        f"{START_MARKER}\n\n"
+        f"{notes}\n\n"
+        f"{END_MARKER}"
+    )
+
+
     pattern = (
         re.escape(START_MARKER)
         + r".*?"
         + re.escape(END_MARKER)
     )
+
 
     if re.search(
         pattern,
@@ -108,12 +120,12 @@ def update_readme(problem_folder):
 
     else:
 
-        readme = (
-            readme.rstrip()
-            + "\n\n"
-            + notes_block
-            + "\n"
+        print(
+            f"No notes markers found in {readme_path}"
         )
+
+        return
+
 
     with open(
         readme_path,
@@ -123,8 +135,9 @@ def update_readme(problem_folder):
 
         file.write(readme)
 
+
     print(
-        f"Updated README: {problem_folder}"
+        f"Updated README notes: {problem_folder}"
     )
 
 
