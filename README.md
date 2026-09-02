@@ -25,7 +25,8 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Category | Solved |
 |---|---:|
-| Algorithms | 2 |
+| Arrays | 2 |
+
 
 ---
 
@@ -35,6 +36,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 |---|---:|
 | Hash Table | 2 |
 
+
 ---
 
 ### 📝 Recent Problems
@@ -43,6 +45,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 |---|---|---|
 | 217. Contains Duplicate | Easy | Hash Table |
 | 1. Two Sum | Easy | Hash Table |
+
 
 ---
 
