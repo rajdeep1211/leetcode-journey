@@ -14,10 +14,10 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Difficulty | Solved |
 |---|---:|
-| 🟢 Easy | 2 |
+| 🟢 Easy | 3 |
 | 🟡 Medium | 0 |
 | 🔴 Hard | 0 |
-| **Total** | **2** |
+| **Total** | **3** |
 
 ---
 
@@ -26,6 +26,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Category | Solved |
 |---|---:|
 | Arrays | 2 |
+| Database | 1 |
 
 
 ---
@@ -35,6 +36,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Pattern | Problems |
 |---|---:|
 | Hash Table | 2 |
+| Other | 1 |
 
 
 ---
@@ -44,6 +46,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Problem | Difficulty | Pattern |
 |---|---|---|
 | 217. Contains Duplicate | Easy | Hash Table |
+| 175. Combine Two Tables | Easy | Other |
 | 1. Two Sum | Easy | Hash Table |
 
 
