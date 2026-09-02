@@ -2,69 +2,18 @@
 
 **Difficulty:** Easy  
 **Category:** Algorithms  
-**Primary Pattern:** arrays  
+**Primary Pattern:** Hash Table  
 **Topics:** Array, Hash Table
 
 ---
 
-## Problem
+## 🧩 Problem
 
 See [`question.md`](./question.md) for the complete problem statement.
 
 ---
 
-## Approach
-
-### Thought Process
-
-Write your reasoning here.
-
-- What was your first idea?
-- What observation helped?
-- Why does the final approach work?
-
-### Algorithm
-
-1. Identify the key observation.
-2. Apply the chosen data structure or algorithm.
-3. Process the input.
-4. Return the result.
-
----
-
-## Complexity
-
-**Time:** `O(?)`
-
-**Space:** `O(?)`
-
----
-
-## Solution
-
-The accepted LeetCode solution is available in the solution file.
-
----
-
-## My Notes
-
-## Approach
-
-## Complexity
-
-## Notes
-
----
-
-## Key Takeaway
-
-Write the main concept or pattern learned from this problem.
-
----
-
-## Related Topics
-
-- Array, - Hash Table
+## 💭 My Solving Notes
 
 <!-- AUTO-NOTES-START -->
 
@@ -82,7 +31,7 @@ The brute-force approach would take O(n²). Instead of repeatedly searching for 
 
 For each number, I calculate:
 
-target - current number
+`target - current number`
 
 If that value is already present in the hash map, I have found the required pair.
 
@@ -102,6 +51,25 @@ Otherwise, I store the current number and its index in the hash map.
 
 - Hash maps provide fast average O(1) lookup.
 - The complement technique is useful for pair-sum problems.
-- Always consider whether previously processed values can be stored for faster lookup.
+- Previously processed values can be stored for faster lookup.
 
 <!-- AUTO-NOTES-END -->
+
+---
+
+## 💻 Solution
+
+The accepted C++ solution is available in [`solution.cpp`](./solution.cpp).
+
+---
+
+## 🧠 Key Takeaway
+
+The complement technique combined with a hash map can reduce a pair-search problem from O(n²) to O(n).
+
+---
+
+## 🔗 Related Topics
+
+- Array
+- Hash Table
