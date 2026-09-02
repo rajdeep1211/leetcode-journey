@@ -138,11 +138,12 @@ leetcode-journey/
         └── organize-leetcode.yml
 
 <!-- LEETHUB:TABLE:START -->
-Solved: 3 (Easy: 3, Medium: 0, Hard: 0)
+Solved: 4 (Easy: 4, Medium: 0, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
+| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-02 |
 | 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-02 |
 | 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-02 |
-| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-02 |
+| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-02 |
 <!-- LEETHUB:TABLE:END -->
