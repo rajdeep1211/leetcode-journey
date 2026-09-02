@@ -2,7 +2,7 @@
 
 **Difficulty:** Easy  
 **Category:** Database  
-**Primary Pattern:** SQL 
+**Primary Pattern:** SQL
 **Topics:** Database
 
 ---
