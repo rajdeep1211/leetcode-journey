@@ -1,5 +1,9 @@
 name: Organize LeetCode Solutions
 
+concurrency:
+  group: leetcode-organization
+  cancel-in-progress: false
+
 on:
   push:
     branches:
