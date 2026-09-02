@@ -6,8 +6,6 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 ---
 
-## 📊 Progress Dashboard
-
 <!-- AUTO-DASHBOARD-START -->
 
 ## 📊 Progress Dashboard
