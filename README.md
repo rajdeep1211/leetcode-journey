@@ -142,8 +142,8 @@ Solved: 4 (Easy: 4, Medium: 0, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-02 |
-| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-02 |
-| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-02 |
-| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-02 |
+| 175 | [Combine Two Tables](database/sql/0175-combine-two-tables/) | Easy | 2026-09-02 |
+| 217 | [Contains Duplicate](algorithms/arrays/0217-contains-duplicate/) | Easy | 2026-09-02 |
+| 1 | [Two Sum](algorithms/arrays/0001-two-sum/) | Easy | 2026-09-02 |
+| 121 | [Best Time to Buy and Sell Stock](algorithms/arrays/0121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-02 |
 <!-- LEETHUB:TABLE:END -->
