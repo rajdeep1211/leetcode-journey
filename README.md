@@ -36,7 +36,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Pattern | Problems |
 |---|---:|
 | Hash Table | 2 |
-| Other | 1 |
+| SQL | 1 |
 
 
 ---
@@ -46,7 +46,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Problem | Difficulty | Pattern |
 |---|---|---|
 | 217. Contains Duplicate | Easy | Hash Table |
-| 175. Combine Two Tables | Easy | Other |
+| 175. Combine Two Tables | Easy | SQL |
 | 1. Two Sum | Easy | Hash Table |
 
 
