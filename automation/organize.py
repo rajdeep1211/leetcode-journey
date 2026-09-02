@@ -199,6 +199,10 @@ def determine_primary_pattern(tags):
 
     tag_names = {tag["name"] for tag in tags}
 
+    # Database / SQL problems
+    if "Database" in tag_names:
+        return "SQL"
+
     priority = [
         "Hash Table",
         "Two Pointers",
@@ -225,7 +229,6 @@ def determine_primary_pattern(tags):
             return tag
 
     return "Other"
-
 
 # =========================================================
 # README GENERATOR
