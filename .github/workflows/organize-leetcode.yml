@@ -33,6 +33,9 @@ jobs:
       - name: Update progress dashboard
         run: python automation/update_dashboard.py
 
+      - name: Fix LeetHub table links
+        run: python automation/fix_leethub_links.py
+
       - name: Sync solving notes
         run: python automation/sync_notes.py
 
