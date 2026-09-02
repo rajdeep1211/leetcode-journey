@@ -49,6 +49,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 ---
 
+> Statistics are automatically generated from the solutions in this repository.
 
 <!-- AUTO-DASHBOARD-END -->
 
