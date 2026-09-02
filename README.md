@@ -1,44 +1,73 @@
 # LeetCode Journey
 
-My personal journey of solving LeetCode problems and improving problem-solving skills.
+My personal journey of solving LeetCode problems, improving problem-solving skills, and building a strong foundation in Data Structures & Algorithms.
 
-This repository contains:
-
-- LeetCode solutions
-- Problem-solving approaches
-- Algorithmic patterns
-- Time and space complexity analysis
-- Key learnings from each problem
-- SQL and database problems
-- Progress tracking
+This repository documents not only my solutions, but also the reasoning, patterns, complexity analysis, and lessons learned from each problem.
 
 ---
 
-## Progress
+## 📊 Progress Dashboard
 
-| Category | Solved |
-|---|---:|
-| Algorithms | 0 |
-| Database | 0 |
-| Shell | 0 |
-| Other | 0 |
+<!-- AUTO-DASHBOARD-START -->
+
+## 📊 Progress Dashboard
+
+### Problems Solved
+
+| Difficulty | Solved |
+|------------|-------:|
+| 🟢 Easy | 0 |
+| 🟡 Medium | 0 |
+| 🔴 Hard | 0 |
 | **Total** | **0** |
 
 ---
 
-## Problem Categories
+### 🧠 Problem Categories
 
-### Algorithms
+| Category | Solved |
+|----------|-------:|
+| Algorithms | 0 |
+| Database | 0 |
+| Shell | 0 |
+| Pandas | 0 |
+| Concurrency | 0 |
+| Other | 0 |
+
+---
+
+### 🔥 Patterns Practiced
+
+| Pattern | Problems |
+|---------|---------:|
+| None yet | 0 |
+
+---
+
+### 📝 Recent Problems
+
+| Problem | Difficulty | Pattern |
+|---------|------------|---------|
+| No problems solved yet | - | - |
+
+<!-- AUTO-DASHBOARD-END -->
+
+> Statistics are automatically generated from the solutions in this repository.
+
+---
+
+## 🧠 What I'm Practicing
+
+### Data Structures & Algorithms
 
 - Arrays
 - Strings
-- Hashing
+- Hash Tables
 - Two Pointers
 - Sliding Window
 - Binary Search
-- Linked List
-- Stack
-- Queue
+- Linked Lists
+- Stack & Queue
 - Trees
 - Graphs
 - Heap / Priority Queue
@@ -60,81 +89,48 @@ This repository contains:
 ### Other
 
 - Shell
-- Concurrency
 - Pandas
-- Miscellaneous
+- Concurrency
 
 ---
 
-## My Goal
+## 📁 Repository Structure
 
-Solve problems consistently, understand the underlying patterns, and document the reasoning behind each solution.
-
----
-
-## Progress
-
-Started: September 2026
-
----
-
-## LeetCode
-
-[My LeetCode Profile](https://leetcode.com/)
-
-<!-- LEETHUB:TABLE:START -->
-Solved: 2 (Easy: 2, Medium: 0, Hard: 0)
-
-| # | Problem | Difficulty | Solved |
-|---|---|---|---|
-| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-02 |
-| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-02 |
-<!-- LEETHUB:TABLE:END -->
-
-
-<!-- AUTO-DASHBOARD-START -->
-
-## 📊 Progress Dashboard
-
-### Problems Solved
-
-| Difficulty | Solved |
-|---|---:|
-| 🟢 Easy | 2 |
-| 🟡 Medium | 0 |
-| 🔴 Hard | 0 |
-| **Total** | **2** |
-
----
-
-### 🧠 Problem Categories
-
-| Category | Solved |
-|---|---:|
-| Arrays | 2 |
-
-
----
-
-### 🔥 Patterns Practiced
-
-| Pattern | Problems |
-|---|---:|
-| Hash Table | 2 |
-
-
----
-
-### 📝 Recent Problems
-
-| Problem | Difficulty | Pattern |
-|---|---|---|
-| 217. Contains Duplicate | Easy | Hash Table |
-| 1. Two Sum | Easy | Hash Table |
-
-
----
-
-> Statistics are automatically generated from the solutions in this repository.
-
-<!-- AUTO-DASHBOARD-END -->
+```text
+leetcode-journey/
+│
+├── algorithms/
+│   ├── arrays/
+│   ├── strings/
+│   ├── hashing/
+│   ├── two-pointers/
+│   ├── sliding-window/
+│   ├── binary-search/
+│   ├── linked-list/
+│   ├── stack/
+│   ├── queue/
+│   ├── trees/
+│   ├── graphs/
+│   ├── heap/
+│   ├── greedy/
+│   ├── backtracking/
+│   ├── dynamic-programming/
+│   └── ...
+│
+├── database/
+│   └── sql/
+│
+├── shell/
+│
+├── pandas/
+│
+├── concurrency/
+│
+├── automation/
+│   ├── organize.py
+│   ├── sync_notes.py
+│   └── update_dashboard.py
+│
+└── .github/
+    └── workflows/
+        └── organize-leetcode.yml
