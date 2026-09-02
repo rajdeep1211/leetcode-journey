@@ -68,10 +68,6 @@ Write the main concept or pattern learned from this problem.
 
 <!-- AUTO-NOTES-START -->
 
-## 💭 My Solving Notes
-
-# My Solving Notes
-
 ## Approach
 
 ### Initial Thought
