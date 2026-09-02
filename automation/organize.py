@@ -4,12 +4,12 @@ import shutil
 import requests
 
 
-REPO_ROOT = os.getcwd()
+ROOT = os.getcwd()
 
 
-# ---------------------------------------------------------
+# =========================================================
 # CATEGORY CONFIGURATION
-# ---------------------------------------------------------
+# =========================================================
 
 ALGORITHM_CATEGORIES = {
     "Array": "arrays",
@@ -38,36 +38,30 @@ ALGORITHM_CATEGORIES = {
 
 DATABASE_TAGS = {
     "Database",
-    "SQL",
 }
 
 
-NON_ALGORITHM_CATEGORIES = {
+OTHER_CATEGORIES = {
     "Shell": "shell",
     "Pandas": "pandas",
     "Concurrency": "concurrency",
 }
 
 
-# ---------------------------------------------------------
+# =========================================================
 # FIND RAW LEETCODE FOLDERS
-# ---------------------------------------------------------
+# =========================================================
 
 def get_problem_folders():
 
     folders = []
 
-    for item in os.listdir(REPO_ROOT):
+    for item in os.listdir(ROOT):
 
-        path = os.path.join(REPO_ROOT, item)
+        path = os.path.join(ROOT, item)
 
         if not os.path.isdir(path):
             continue
-
-        # Example:
-        # 1-two-sum
-        # 15-3sum
-        # 121-best-time-to-buy-and-sell-stock
 
         if re.match(r"^\d+-", item):
             folders.append(item)
@@ -75,9 +69,9 @@ def get_problem_folders():
     return folders
 
 
-# ---------------------------------------------------------
-# EXTRACT PROBLEM ID
-# ---------------------------------------------------------
+# =========================================================
+# PROBLEM ID
+# =========================================================
 
 def extract_problem_id(folder_name):
 
@@ -89,18 +83,18 @@ def extract_problem_id(folder_name):
     return None
 
 
-# ---------------------------------------------------------
-# GET SLUG
-# ---------------------------------------------------------
+# =========================================================
+# SLUG
+# =========================================================
 
 def get_slug(folder_name):
 
     return re.sub(r"^\d+-", "", folder_name)
 
 
-# ---------------------------------------------------------
-# QUERY LEETCODE
-# ---------------------------------------------------------
+# =========================================================
+# LEETCODE API
+# =========================================================
 
 def query_leetcode(title_slug):
 
@@ -146,9 +140,9 @@ def query_leetcode(title_slug):
     return data.get("data", {}).get("question")
 
 
-# ---------------------------------------------------------
-# DETERMINE CATEGORY
-# ---------------------------------------------------------
+# =========================================================
+# CATEGORY
+# =========================================================
 
 def determine_category(tags):
 
@@ -156,13 +150,13 @@ def determine_category(tags):
 
     # Database
     if tag_names.intersection(DATABASE_TAGS):
-        return "database"
+        return "database/sql"
 
-    # Other LeetCode categories
-    for tag in NON_ALGORITHM_CATEGORIES:
+    # Other categories
+    for tag, folder in OTHER_CATEGORIES.items():
 
         if tag in tag_names:
-            return NON_ALGORITHM_CATEGORIES[tag]
+            return folder
 
     # Algorithms
     priority = [
@@ -197,30 +191,30 @@ def determine_category(tags):
     return "other"
 
 
-# ---------------------------------------------------------
+# =========================================================
 # PRIMARY PATTERN
-# ---------------------------------------------------------
+# =========================================================
 
 def determine_primary_pattern(tags):
 
     tag_names = {tag["name"] for tag in tags}
 
     priority = [
-        "Array",
         "Hash Table",
-        "String",
         "Two Pointers",
         "Sliding Window",
         "Binary Search",
+        "Dynamic Programming",
+        "Backtracking",
+        "Graph",
+        "Tree",
+        "Heap",
         "Linked List",
         "Stack",
         "Queue",
-        "Tree",
-        "Graph",
-        "Heap",
+        "Array",
+        "String",
         "Greedy",
-        "Backtracking",
-        "Dynamic Programming",
         "Bit Manipulation",
         "Math",
     ]
@@ -233,9 +227,9 @@ def determine_primary_pattern(tags):
     return "Other"
 
 
-# ---------------------------------------------------------
-# CREATE README
-# ---------------------------------------------------------
+# =========================================================
+# README GENERATOR
+# =========================================================
 
 def create_readme(problem, destination_folder):
 
@@ -244,14 +238,11 @@ def create_readme(problem, destination_folder):
         "README.md"
     )
 
-    # NEVER overwrite an existing README.
+    # Don't overwrite an existing README.
     if os.path.exists(readme_path):
-
         print(
-            f"README already exists. "
-            f"Keeping existing README: {readme_path}"
+            f"README already exists: {readme_path}"
         )
-
         return
 
     problem_id = problem["questionFrontendId"]
@@ -271,98 +262,70 @@ def create_readme(problem, destination_folder):
         problem["topicTags"]
     )
 
+    if category.startswith("algorithms/"):
+        display_category = "Algorithms"
+    elif category.startswith("database"):
+        display_category = "Database"
+    else:
+        display_category = category.title()
+
+    related_topics = "\n".join(
+        f"- {tag}"
+        for tag in tags
+    )
+
     readme = f"""# {problem_id}. {title}
 
 **Difficulty:** {difficulty}  
-**Category:** {category}  
+**Category:** {display_category}  
 **Primary Pattern:** {primary_pattern}  
 **Topics:** {", ".join(tags)}
 
 ---
 
-## Problem
+## 🧩 Problem
 
 See [`question.md`](./question.md) for the complete problem statement.
 
 ---
 
-## My Thought Process
+## 💭 My Solving Notes
 
-### 1. Initial Approach
+<!-- AUTO-NOTES-START -->
 
-<!--
-What was your first idea?
+Complete `notes.md` after solving the problem.
 
-Example:
-I initially considered using...
--->
-
-Write your initial thinking here.
+<!-- AUTO-NOTES-END -->
 
 ---
 
-### 2. Observation
+## 🔎 Algorithm
 
-<!--
-What important observation helped you solve the problem?
--->
-
-Write the key observation here.
+The algorithm is documented in the solving notes above.
 
 ---
 
-### 3. Optimized Approach
+## ⏱️ Complexity
 
-<!--
-Explain why the final approach is better.
--->
-
-Explain your optimized approach here.
+See the complexity section in `notes.md`.
 
 ---
 
-## Algorithm
+## 💻 Solution
 
-1. Identify the important condition.
-2. Select the appropriate data structure or algorithm.
-3. Process the input.
-4. Return the result.
+The accepted solution is available in the solution file.
 
 ---
 
-## Complexity
+## 🧠 Key Takeaway
 
-**Time:** `O(?)`
-
-**Space:** `O(?)`
+See the key learning in `notes.md`.
 
 ---
 
-## Solution
+## 🔗 Related Topics
 
-The accepted solution is available in:
-
-- `solution.*`
-
----
-
-## Key Takeaway
-
-<!--
-What did you learn from this problem?
-
-Example:
-Hash maps can reduce repeated searching from O(n)
-to O(1) average lookup.
--->
-
-Write your key takeaway here.
-
----
-
-## Related Topics
-
-{chr(10).join(f"- {tag}" for tag in tags)}
+{related_topics}
 """
 
     with open(
@@ -374,14 +337,14 @@ Write your key takeaway here.
         file.write(readme)
 
 
-# ---------------------------------------------------------
+# =========================================================
 # PROCESS PROBLEM
-# ---------------------------------------------------------
+# =========================================================
 
 def process_problem(folder_name):
 
     source_folder = os.path.join(
-        REPO_ROOT,
+        ROOT,
         folder_name
     )
 
@@ -412,7 +375,7 @@ def process_problem(folder_name):
     )
 
     destination_parent = os.path.join(
-        REPO_ROOT,
+        ROOT,
         category
     )
 
@@ -427,57 +390,44 @@ def process_problem(folder_name):
     )
 
     # -----------------------------------------------------
-    # ALREADY ORGANIZED
+    # MOVE RAW PROBLEM
     # -----------------------------------------------------
 
-    if os.path.abspath(source_folder) == os.path.abspath(
+    if os.path.abspath(source_folder) != os.path.abspath(
         destination_folder
     ):
 
-        create_readme(
-            problem,
-            destination_folder
-        )
-
-        return
-
-    # -----------------------------------------------------
-    # MOVE PROBLEM
-    # -----------------------------------------------------
-
-    if not os.path.exists(destination_folder):
-
-        shutil.move(
-            source_folder,
-            destination_folder
-        )
-
-    else:
-
-        # Merge files if destination exists.
-        for item in os.listdir(source_folder):
-
-            source = os.path.join(
-                source_folder,
-                item
-            )
-
-            destination = os.path.join(
-                destination_folder,
-                item
-            )
-
-            if os.path.exists(destination):
-                continue
+        if not os.path.exists(destination_folder):
 
             shutil.move(
-                source,
-                destination
+                source_folder,
+                destination_folder
             )
 
-        shutil.rmtree(
-            source_folder
-        )
+        else:
+
+            for item in os.listdir(source_folder):
+
+                source = os.path.join(
+                    source_folder,
+                    item
+                )
+
+                destination = os.path.join(
+                    destination_folder,
+                    item
+                )
+
+                if not os.path.exists(destination):
+
+                    shutil.move(
+                        source,
+                        destination
+                    )
+
+            shutil.rmtree(
+                source_folder
+            )
 
     # -----------------------------------------------------
     # CREATE README
@@ -498,9 +448,9 @@ def process_problem(folder_name):
     )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # MAIN
-# ---------------------------------------------------------
+# =========================================================
 
 def main():
 
@@ -523,8 +473,7 @@ def main():
         except Exception as error:
 
             print(
-                f"Error processing {folder}: "
-                f"{error}"
+                f"Error processing {folder}: {error}"
             )
 
 
