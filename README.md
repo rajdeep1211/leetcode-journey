@@ -15,40 +15,43 @@ This repository documents not only my solutions, but also the reasoning, pattern
 ### Problems Solved
 
 | Difficulty | Solved |
-|------------|-------:|
-| 🟢 Easy | 0 |
+|---|---:|
+| 🟢 Easy | 2 |
 | 🟡 Medium | 0 |
 | 🔴 Hard | 0 |
-| **Total** | **0** |
+| **Total** | **2** |
 
 ---
 
 ### 🧠 Problem Categories
 
 | Category | Solved |
-|----------|-------:|
-| Algorithms | 0 |
-| Database | 0 |
-| Shell | 0 |
-| Pandas | 0 |
-| Concurrency | 0 |
-| Other | 0 |
+|---|---:|
+| Arrays | 2 |
+
 
 ---
 
 ### 🔥 Patterns Practiced
 
 | Pattern | Problems |
-|---------|---------:|
-| None yet | 0 |
+|---|---:|
+| Hash Table | 2 |
+
 
 ---
 
 ### 📝 Recent Problems
 
 | Problem | Difficulty | Pattern |
-|---------|------------|---------|
-| No problems solved yet | - | - |
+|---|---|---|
+| 217. Contains Duplicate | Easy | Hash Table |
+| 1. Two Sum | Easy | Hash Table |
+
+
+---
+
+> Statistics are automatically generated from the solutions in this repository.
 
 <!-- AUTO-DASHBOARD-END -->
 
