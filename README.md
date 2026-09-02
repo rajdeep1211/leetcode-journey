@@ -119,7 +119,7 @@ Solved: 1 (Easy: 1, Medium: 0, Hard: 0)
 
 | Pattern | Problems |
 |---|---:|
-| arrays | 1 |
+| Hash Table | 1 |
 
 
 ---
@@ -128,7 +128,7 @@ Solved: 1 (Easy: 1, Medium: 0, Hard: 0)
 
 | Problem | Difficulty | Pattern |
 |---|---|---|
-| 1. Two Sum | Easy | arrays |
+| 1. Two Sum | Easy | Hash Table |
 
 
 ---

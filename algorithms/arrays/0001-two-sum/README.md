@@ -31,7 +31,7 @@ The brute-force approach would take O(n²). Instead of repeatedly searching for 
 
 For each number, I calculate:
 
-`target - current number`
+target - current number
 
 If that value is already present in the hash map, I have found the required pair.
 
@@ -51,7 +51,7 @@ Otherwise, I store the current number and its index in the hash map.
 
 - Hash maps provide fast average O(1) lookup.
 - The complement technique is useful for pair-sum problems.
-- Previously processed values can be stored for faster lookup.
+- Always consider whether previously processed values can be stored for faster lookup.
 
 <!-- AUTO-NOTES-END -->
 
