@@ -402,7 +402,146 @@ def update_readme(dashboard):
     ) as file:
 
         file.write(content)
+# ---------------------------------------------------------
+# FIX LEETHUB TABLE LINKS
+# ---------------------------------------------------------
 
+def update_leethub_links(problems):
+
+    readme_path = os.path.join(
+        ROOT,
+        "README.md"
+    )
+
+    if not os.path.exists(readme_path):
+        print("README.md not found.")
+        return
+
+    with open(
+        readme_path,
+        "r",
+        encoding="utf-8"
+    ) as file:
+        content = file.read()
+
+    start_marker = "<!-- LEETHUB:TABLE:START -->"
+    end_marker = "<!-- LEETHUB:TABLE:END -->"
+
+    if start_marker not in content or end_marker not in content:
+        print("LeetHub table markers not found.")
+        return
+
+    # -----------------------------------------------------
+    # Build problem number -> actual repository path
+    # -----------------------------------------------------
+
+    problem_paths = {}
+
+    for problem in problems:
+
+        name = problem["name"]
+
+        match = re.match(
+            r"^(\d+)-",
+            name
+        )
+
+        if not match:
+            continue
+
+        problem_number = match.group(1)
+
+        relative_path = os.path.relpath(
+            problem["path"],
+            ROOT
+        )
+
+        # GitHub URLs always use /
+        relative_path = relative_path.replace(
+            os.sep,
+            "/"
+        )
+
+        # Add trailing slash for directory links
+        relative_path += "/"
+
+        problem_paths[problem_number] = relative_path
+
+    # -----------------------------------------------------
+    # Extract LeetHub table
+    # -----------------------------------------------------
+
+    pattern = (
+        re.escape(start_marker)
+        + r"(.*?)"
+        + re.escape(end_marker)
+    )
+
+    match = re.search(
+        pattern,
+        content,
+        flags=re.DOTALL
+    )
+
+    if not match:
+        print("Could not find LeetHub table.")
+        return
+
+    table = match.group(1)
+
+    # -----------------------------------------------------
+    # Replace links using problem number
+    # -----------------------------------------------------
+
+    def replace_link(match):
+
+        problem_number = match.group(1)
+        problem_title = match.group(2)
+        current_path = match.group(3)
+
+        new_path = problem_paths.get(
+            problem_number
+        )
+
+        if not new_path:
+            return match.group(0)
+
+        return (
+            f"| {problem_number} | "
+            f"[{problem_title}]"
+            f"({new_path}) |"
+        )
+
+    table_pattern = (
+        r"\|\s*(\d+)\s*\|\s*"
+        r"\[([^\]]+)\]"
+        r"\(([^)]+)\)\s*\|"
+    )
+
+    updated_table = re.sub(
+        table_pattern,
+        replace_link,
+        table
+    )
+
+    # -----------------------------------------------------
+    # Write updated README
+    # -----------------------------------------------------
+
+    updated_content = (
+        content[:match.start(1)]
+        + updated_table
+        + content[match.end(1):]
+    )
+
+    with open(
+        readme_path,
+        "w",
+        encoding="utf-8"
+    ) as file:
+        file.write(updated_content)
+
+    print("LeetHub table links updated successfully.")
 
 # ---------------------------------------------------------
 # MAIN
@@ -424,10 +563,14 @@ def main():
         dashboard
     )
 
+    update_leethub_links(
+        problems
+    )
+
     print(
         "Dashboard updated successfully."
     )
 
-
-if __name__ == "__main__":
-    main()
+    print(
+        "LeetHub links updated successfully."
+    )
