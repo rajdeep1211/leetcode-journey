@@ -11,18 +11,15 @@ ROOT = os.getcwd()
 # ---------------------------------------------------------
 
 def find_problem_folders():
-
     problems = []
 
-    algorithms_path = os.path.join(
-        ROOT,
-        "algorithms"
-    )
+    # ---------------------------------------------------------
+    # Algorithms
+    # ---------------------------------------------------------
+    algorithms_path = os.path.join(ROOT, "algorithms")
 
     if os.path.exists(algorithms_path):
-
         for category in os.listdir(algorithms_path):
-
             category_path = os.path.join(
                 algorithms_path,
                 category
@@ -32,7 +29,6 @@ def find_problem_folders():
                 continue
 
             for problem in os.listdir(category_path):
-
                 problem_path = os.path.join(
                     category_path,
                     problem
@@ -42,49 +38,41 @@ def find_problem_folders():
                     continue
 
                 if re.match(r"^\d+-", problem):
-
                     problems.append({
                         "path": problem_path,
                         "category": category,
                         "name": problem
                     })
 
-
-    # Database
-    database_path = os.path.join(
-        ROOT,
-        "database"
-    )
+    # ---------------------------------------------------------
+    # Database / SQL
+    # ---------------------------------------------------------
+    database_path = os.path.join(ROOT, "database")
 
     if os.path.exists(database_path):
+        for root, dirs, files in os.walk(database_path):
+            for problem in dirs:
+                if re.match(r"^\d+-", problem):
+                    problem_path = os.path.join(
+                        root,
+                        problem
+                    )
 
-        for item in os.listdir(database_path):
+                    problems.append({
+                        "path": problem_path,
+                        "category": "database",
+                        "name": problem
+                    })
 
-            path = os.path.join(
-                database_path,
-                item
-            )
-
-            if os.path.isdir(path) and re.match(
-                r"^\d+-",
-                item
-            ):
-
-                problems.append({
-                    "path": path,
-                    "category": "database",
-                    "name": item
-                })
-
-
+    # ---------------------------------------------------------
     # Other categories
+    # ---------------------------------------------------------
     for category in [
         "shell",
         "pandas",
         "concurrency",
         "other"
     ]:
-
         category_path = os.path.join(
             ROOT,
             category
@@ -94,7 +82,6 @@ def find_problem_folders():
             continue
 
         for item in os.listdir(category_path):
-
             path = os.path.join(
                 category_path,
                 item
@@ -104,13 +91,11 @@ def find_problem_folders():
                 r"^\d+-",
                 item
             ):
-
                 problems.append({
                     "path": path,
                     "category": category,
                     "name": item
                 })
-
 
     return problems
 
