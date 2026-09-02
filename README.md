@@ -100,10 +100,10 @@ Solved: 2 (Easy: 2, Medium: 0, Hard: 0)
 
 | Difficulty | Solved |
 |---|---:|
-| 🟢 Easy | 1 |
+| 🟢 Easy | 2 |
 | 🟡 Medium | 0 |
 | 🔴 Hard | 0 |
-| **Total** | **1** |
+| **Total** | **2** |
 
 ---
 
@@ -111,7 +111,7 @@ Solved: 2 (Easy: 2, Medium: 0, Hard: 0)
 
 | Category | Solved |
 |---|---:|
-| Arrays | 1 |
+| Arrays | 2 |
 
 
 ---
@@ -120,7 +120,7 @@ Solved: 2 (Easy: 2, Medium: 0, Hard: 0)
 
 | Pattern | Problems |
 |---|---:|
-| Hash Table | 1 |
+| Hash Table | 2 |
 
 
 ---
@@ -129,6 +129,7 @@ Solved: 2 (Easy: 2, Medium: 0, Hard: 0)
 
 | Problem | Difficulty | Pattern |
 |---|---|---|
+| 217. Contains Duplicate | Easy | Hash Table |
 | 1. Two Sum | Easy | Hash Table |
 
 
