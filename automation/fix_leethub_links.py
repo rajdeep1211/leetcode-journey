@@ -26,10 +26,8 @@ def find_problem_paths():
             continue
 
         for current_root, dirs, files in os.walk(root_path):
-            for directory in dirs:
 
-                if not re.match(r"^\d+-", directory):
-                    continue
+            for directory in dirs:
 
                 match = re.match(r"^(\d+)-", directory)
 
@@ -61,7 +59,11 @@ def fix_leethub_links():
         print("README.md not found.")
         return
 
-    with open(readme_path, "r", encoding="utf-8") as file:
+    with open(
+        readme_path,
+        "r",
+        encoding="utf-8"
+    ) as file:
         content = file.read()
 
     if START_MARKER not in content or END_MARKER not in content:
@@ -70,14 +72,14 @@ def fix_leethub_links():
 
     problem_paths = find_problem_paths()
 
-    table_pattern = (
+    pattern = (
         re.escape(START_MARKER)
         + r"(.*?)"
         + re.escape(END_MARKER)
     )
 
     match = re.search(
-        table_pattern,
+        pattern,
         content,
         flags=re.DOTALL
     )
@@ -140,10 +142,16 @@ def fix_leethub_links():
         + content[match.end(1):]
     )
 
-    with open(readme_path, "w", encoding="utf-8") as file:
+    with open(
+        readme_path,
+        "w",
+        encoding="utf-8"
+    ) as file:
         file.write(updated_content)
 
-    print(f"Updated {changes} LeetHub link(s).")
+    print(
+        f"Updated {changes} LeetHub link(s)."
+    )
 
 
 if __name__ == "__main__":
