@@ -15,9 +15,9 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Difficulty | Solved |
 |---|---:|
 | 🟢 Easy | 4 |
-| 🟡 Medium | 1 |
+| 🟡 Medium | 2 |
 | 🔴 Hard | 0 |
-| **Total** | **5** |
+| **Total** | **6** |
 
 ---
 
@@ -26,7 +26,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Category | Solved |
 |---|---:|
 | Arrays | 3 |
-| Database | 1 |
+| Database | 2 |
 | Linked List | 1 |
 
 
@@ -37,9 +37,9 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Pattern | Problems |
 |---|---:|
 | Hash Table | 2 |
+| SQL | 2 |
 | Dynamic Programming | 1 |
 | Linked List | 1 |
-| SQL | 1 |
 
 
 ---
@@ -49,6 +49,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Problem | Difficulty | Pattern |
 |---|---|---|
 | 217. Contains Duplicate | Easy | Hash Table |
+| 176. Second Highest Salary | Medium | SQL |
 | 175. Combine Two Tables | Easy | SQL |
 | 121. Best Time to Buy and Sell Stock | Easy | Dynamic Programming |
 | 2. Add Two Numbers | Medium | Linked List |
@@ -146,10 +147,10 @@ Solved: 6 (Easy: 4, Medium: 2, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-09-03 |
-| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-03 |
-| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-03 |
-| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-03 |
-| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-03 |
-| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-09-03 |
+| 2 | [Add Two Numbers](algorithms/linked-list/0002-add-two-numbers/) | Medium | 2026-09-03 |
+| 121 | [Best Time to Buy and Sell Stock](algorithms/arrays/0121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-03 |
+| 175 | [Combine Two Tables](database/sql/0175-combine-two-tables/) | Easy | 2026-09-03 |
+| 217 | [Contains Duplicate](algorithms/arrays/0217-contains-duplicate/) | Easy | 2026-09-03 |
+| 1 | [Two Sum](algorithms/arrays/0001-two-sum/) | Easy | 2026-09-03 |
+| 176 | [Second Highest Salary](database/sql/0176-second-highest-salary/) | Medium | 2026-09-03 |
 <!-- LEETHUB:TABLE:END -->
