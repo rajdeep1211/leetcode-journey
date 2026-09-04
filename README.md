@@ -143,14 +143,15 @@ leetcode-journey/
         └── organize-leetcode.yml
 
 <!-- LEETHUB:TABLE:START -->
-Solved: 6 (Easy: 4, Medium: 2, Hard: 0)
+Solved: 7 (Easy: 5, Medium: 2, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 2 | [Add Two Numbers](algorithms/linked-list/0002-add-two-numbers/) | Medium | 2026-09-03 |
-| 121 | [Best Time to Buy and Sell Stock](algorithms/arrays/0121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-03 |
-| 175 | [Combine Two Tables](database/sql/0175-combine-two-tables/) | Easy | 2026-09-03 |
-| 217 | [Contains Duplicate](algorithms/arrays/0217-contains-duplicate/) | Easy | 2026-09-03 |
-| 1 | [Two Sum](algorithms/arrays/0001-two-sum/) | Easy | 2026-09-03 |
-| 176 | [Second Highest Salary](database/sql/0176-second-highest-salary/) | Medium | 2026-09-03 |
+| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-09-04 |
+| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-04 |
+| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-04 |
+| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-04 |
+| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-09-04 |
+| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-04 |
+| 3903 | [Smallest Stable Index I](3903-smallest-stable-index-i/) | Easy | 2026-09-04 |
 <!-- LEETHUB:TABLE:END -->
