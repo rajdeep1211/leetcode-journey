@@ -14,10 +14,10 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Difficulty | Solved |
 |---|---:|
-| 🟢 Easy | 4 |
+| 🟢 Easy | 5 |
 | 🟡 Medium | 2 |
 | 🔴 Hard | 0 |
-| **Total** | **6** |
+| **Total** | **7** |
 
 ---
 
@@ -25,7 +25,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Category | Solved |
 |---|---:|
-| Arrays | 3 |
+| Arrays | 4 |
 | Database | 2 |
 | Linked List | 1 |
 
@@ -38,8 +38,9 @@ This repository documents not only my solutions, but also the reasoning, pattern
 |---|---:|
 | Hash Table | 2 |
 | SQL | 2 |
-| Dynamic Programming | 1 |
 | Linked List | 1 |
+| Array | 1 |
+| Dynamic Programming | 1 |
 
 
 ---
@@ -48,6 +49,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Problem | Difficulty | Pattern |
 |---|---|---|
+| 3903. Smallest Stable Index I | Easy | Array |
 | 217. Contains Duplicate | Easy | Hash Table |
 | 176. Second Highest Salary | Medium | SQL |
 | 175. Combine Two Tables | Easy | SQL |
@@ -147,11 +149,11 @@ Solved: 7 (Easy: 5, Medium: 2, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-09-04 |
-| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-04 |
-| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-04 |
-| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-04 |
-| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-09-04 |
-| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-04 |
-| 3903 | [Smallest Stable Index I](3903-smallest-stable-index-i/) | Easy | 2026-09-04 |
+| 2 | [Add Two Numbers](algorithms/linked-list/0002-add-two-numbers/) | Medium | 2026-09-04 |
+| 121 | [Best Time to Buy and Sell Stock](algorithms/arrays/0121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-04 |
+| 175 | [Combine Two Tables](database/sql/0175-combine-two-tables/) | Easy | 2026-09-04 |
+| 217 | [Contains Duplicate](algorithms/arrays/0217-contains-duplicate/) | Easy | 2026-09-04 |
+| 176 | [Second Highest Salary](database/sql/0176-second-highest-salary/) | Medium | 2026-09-04 |
+| 1 | [Two Sum](algorithms/arrays/0001-two-sum/) | Easy | 2026-09-04 |
+| 3903 | [Smallest Stable Index I](algorithms/arrays/3903-smallest-stable-index-i/) | Easy | 2026-09-04 |
 <!-- LEETHUB:TABLE:END -->
