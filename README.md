@@ -14,10 +14,10 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Difficulty | Solved |
 |---|---:|
-| 🟢 Easy | 5 |
+| 🟢 Easy | 6 |
 | 🟡 Medium | 2 |
 | 🔴 Hard | 0 |
-| **Total** | **7** |
+| **Total** | **8** |
 
 ---
 
@@ -26,7 +26,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Category | Solved |
 |---|---:|
 | Arrays | 4 |
-| Database | 2 |
+| Database | 3 |
 | Linked List | 1 |
 
 
@@ -36,8 +36,8 @@ This repository documents not only my solutions, but also the reasoning, pattern
 
 | Pattern | Problems |
 |---|---:|
+| SQL | 3 |
 | Hash Table | 2 |
-| SQL | 2 |
 | Linked List | 1 |
 | Array | 1 |
 | Dynamic Programming | 1 |
@@ -51,6 +51,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 |---|---|---|
 | 3903. Smallest Stable Index I | Easy | Array |
 | 217. Contains Duplicate | Easy | Hash Table |
+| 181. Employees Earning More Than Their Managers | Easy | SQL |
 | 176. Second Highest Salary | Medium | SQL |
 | 175. Combine Two Tables | Easy | SQL |
 | 121. Best Time to Buy and Sell Stock | Easy | Dynamic Programming |
@@ -149,12 +150,12 @@ Solved: 8 (Easy: 6, Medium: 2, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-09-06 |
-| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-06 |
-| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-06 |
-| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-06 |
-| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-09-06 |
-| 3903 | [Smallest Stable Index I](3903-smallest-stable-index-i/) | Easy | 2026-09-06 |
-| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-06 |
-| 181 | [Employees Earning More Than Their Managers](181-employees-earning-more-than-their-managers/) | Easy | 2026-09-06 |
+| 2 | [Add Two Numbers](algorithms/linked-list/0002-add-two-numbers/) | Medium | 2026-09-06 |
+| 121 | [Best Time to Buy and Sell Stock](algorithms/arrays/0121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-06 |
+| 175 | [Combine Two Tables](database/sql/0175-combine-two-tables/) | Easy | 2026-09-06 |
+| 217 | [Contains Duplicate](algorithms/arrays/0217-contains-duplicate/) | Easy | 2026-09-06 |
+| 176 | [Second Highest Salary](database/sql/0176-second-highest-salary/) | Medium | 2026-09-06 |
+| 3903 | [Smallest Stable Index I](algorithms/arrays/3903-smallest-stable-index-i/) | Easy | 2026-09-06 |
+| 1 | [Two Sum](algorithms/arrays/0001-two-sum/) | Easy | 2026-09-06 |
+| 181 | [Employees Earning More Than Their Managers](database/sql/0181-employees-earning-more-than-their-managers/) | Easy | 2026-09-06 |
 <!-- LEETHUB:TABLE:END -->
