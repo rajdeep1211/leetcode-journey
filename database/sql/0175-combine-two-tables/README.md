@@ -67,7 +67,7 @@ LEFT TABLE
    
 LEFT JOIN
    
-    ↓
+   ↓
     
 RIGHT TABLE
    
