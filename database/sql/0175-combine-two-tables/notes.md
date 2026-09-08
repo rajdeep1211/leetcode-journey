@@ -6,28 +6,31 @@ The goal is to return every person along with their address information if an ad
 
 Join the tables using the common column:
 
-Person.personId = Address.personId
+    Person.personId = Address.personId
 
 A LEFT JOIN is important because we must keep all records from Person, even when a person does not have an entry in Address.
 
 Core Idea
-SELECT
+
+    SELECT
     p.firstName,
     p.lastName,
     a.city,
     a.state
-FROM Person p
-LEFT JOIN Address a
+    FROM Person p
+    LEFT JOIN Address a
     ON p.personId = a.personId;
 
 ## Complexity
 
 Time Complexity
+
 O(P + A)
 
 Approximately linear in the number of rows when the join columns are appropriately indexed.
 
 Space Complexity
+
 O(P + A)
 
 Depending on the database engine and execution strategy, the join may require additional memory for intermediate/join structures.
