@@ -41,13 +41,21 @@ If no matching address exists, city and state will be NULL.
 The relationship is established using:
 Person.personId = Address.personId
 JOIN Pattern to Remember
+
 LEFT TABLE
+
    ↓
+   
 LEFT JOIN
-   ↓
+   
+    ↓
+    
 RIGHT TABLE
+   
    ↓
+   
 ON matching_condition
+
 Key Difference
 INNER JOIN → only matching records
 LEFT JOIN  → all left records + matching right records
