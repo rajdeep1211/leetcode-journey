@@ -15,9 +15,9 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Difficulty | Solved |
 |---|---:|
 | 🟢 Easy | 6 |
-| 🟡 Medium | 2 |
+| 🟡 Medium | 3 |
 | 🔴 Hard | 0 |
-| **Total** | **8** |
+| **Total** | **9** |
 
 ---
 
@@ -28,6 +28,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Arrays | 4 |
 | Database | 3 |
 | Linked List | 1 |
+| Trees | 1 |
 
 
 ---
@@ -41,6 +42,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Linked List | 1 |
 | Array | 1 |
 | Dynamic Programming | 1 |
+| Tree | 1 |
 
 
 ---
@@ -50,6 +52,7 @@ This repository documents not only my solutions, but also the reasoning, pattern
 | Problem | Difficulty | Pattern |
 |---|---|---|
 | 3903. Smallest Stable Index I | Easy | Array |
+| 2265. Count Nodes Equal to Average of Subtree | Medium | Tree |
 | 217. Contains Duplicate | Easy | Hash Table |
 | 181. Employees Earning More Than Their Managers | Easy | SQL |
 | 176. Second Highest Salary | Medium | SQL |
