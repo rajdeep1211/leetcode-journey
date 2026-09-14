@@ -150,18 +150,19 @@ leetcode-journey/
         └── organize-leetcode.yml
 
 <!-- LEETHUB:TABLE:START -->
-Solved: 10 (Easy: 7, Medium: 3, Hard: 0)
+Solved: 11 (Easy: 8, Medium: 3, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 2 | [Add Two Numbers](algorithms/linked-list/0002-add-two-numbers/) | Medium | 2026-09-13 |
-| 121 | [Best Time to Buy and Sell Stock](algorithms/arrays/0121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-13 |
-| 175 | [Combine Two Tables](database/sql/0175-combine-two-tables/) | Easy | 2026-09-13 |
-| 217 | [Contains Duplicate](algorithms/arrays/0217-contains-duplicate/) | Easy | 2026-09-13 |
-| 181 | [Employees Earning More Than Their Managers](database/sql/0181-employees-earning-more-than-their-managers/) | Easy | 2026-09-13 |
-| 176 | [Second Highest Salary](database/sql/0176-second-highest-salary/) | Medium | 2026-09-13 |
-| 3903 | [Smallest Stable Index I](algorithms/arrays/3903-smallest-stable-index-i/) | Easy | 2026-09-13 |
-| 1 | [Two Sum](algorithms/arrays/0001-two-sum/) | Easy | 2026-09-13 |
-| 3483 | [Unique 3-Digit Even Numbers](algorithms/arrays/3483-unique-3-digit-even-numbers/) | Easy | 2026-09-13 |
-| 835 | [Image Overlap](algorithms/arrays/0835-image-overlap/) | Medium | 2026-09-13 |
+| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-09-14 |
+| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-14 |
+| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-14 |
+| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-14 |
+| 181 | [Employees Earning More Than Their Managers](181-employees-earning-more-than-their-managers/) | Easy | 2026-09-14 |
+| 835 | [Image Overlap](835-image-overlap/) | Medium | 2026-09-14 |
+| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-09-14 |
+| 3903 | [Smallest Stable Index I](3903-smallest-stable-index-i/) | Easy | 2026-09-14 |
+| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-14 |
+| 3483 | [Unique 3-Digit Even Numbers](3483-unique-3-digit-even-numbers/) | Easy | 2026-09-14 |
+| 836 | [Rectangle Overlap](836-rectangle-overlap/) | Easy | 2026-09-14 |
 <!-- LEETHUB:TABLE:END -->
