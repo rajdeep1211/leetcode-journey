@@ -150,19 +150,20 @@ leetcode-journey/
         └── organize-leetcode.yml
 
 <!-- LEETHUB:TABLE:START -->
-Solved: 11 (Easy: 8, Medium: 3, Hard: 0)
+Solved: 12 (Easy: 8, Medium: 4, Hard: 0)
 
 | # | Problem | Difficulty | Solved |
 |---|---|---|---|
-| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-09-14 |
-| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-09-14 |
-| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-09-14 |
-| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-09-14 |
-| 181 | [Employees Earning More Than Their Managers](181-employees-earning-more-than-their-managers/) | Easy | 2026-09-14 |
-| 835 | [Image Overlap](835-image-overlap/) | Medium | 2026-09-14 |
-| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-09-14 |
-| 3903 | [Smallest Stable Index I](3903-smallest-stable-index-i/) | Easy | 2026-09-14 |
-| 1 | [Two Sum](1-two-sum/) | Easy | 2026-09-14 |
-| 3483 | [Unique 3-Digit Even Numbers](3483-unique-3-digit-even-numbers/) | Easy | 2026-09-14 |
-| 836 | [Rectangle Overlap](836-rectangle-overlap/) | Easy | 2026-09-14 |
+| 2 | [Add Two Numbers](2-add-two-numbers/) | Medium | 2026-11-21 |
+| 121 | [Best Time to Buy and Sell Stock](121-best-time-to-buy-and-sell-stock/) | Easy | 2026-11-21 |
+| 175 | [Combine Two Tables](175-combine-two-tables/) | Easy | 2026-11-21 |
+| 217 | [Contains Duplicate](217-contains-duplicate/) | Easy | 2026-11-21 |
+| 181 | [Employees Earning More Than Their Managers](181-employees-earning-more-than-their-managers/) | Easy | 2026-11-21 |
+| 835 | [Image Overlap](835-image-overlap/) | Medium | 2026-11-21 |
+| 836 | [Rectangle Overlap](836-rectangle-overlap/) | Easy | 2026-11-21 |
+| 176 | [Second Highest Salary](176-second-highest-salary/) | Medium | 2026-11-21 |
+| 3903 | [Smallest Stable Index I](3903-smallest-stable-index-i/) | Easy | 2026-11-21 |
+| 1 | [Two Sum](1-two-sum/) | Easy | 2026-11-21 |
+| 3483 | [Unique 3-Digit Even Numbers](3483-unique-3-digit-even-numbers/) | Easy | 2026-11-21 |
+| 3331 | [Find Subtree Sizes After Changes](3331-find-subtree-sizes-after-changes/) | Medium | 2026-11-21 |
 <!-- LEETHUB:TABLE:END -->
